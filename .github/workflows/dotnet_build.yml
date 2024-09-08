@@ -6,6 +6,10 @@ on:
       dotnet_version:
         required: true
         type: string
+      path:
+        required: false
+        default: ./
+        type: string
       run_tests:
         required: false
         default: true
@@ -21,6 +25,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{inputs.dotnet_version}}
+    - name: Change directory
+      run: cd ${{inputs.path}}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
