@@ -17,4 +17,4 @@ jobs:
       file: ./simple-service/src/Api/Dockerfile
       context: ./simple-service
       push:  false
-      application: cicd-sotry
+      application: "cicd-sotry"
