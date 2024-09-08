@@ -27,6 +27,8 @@ jobs:
         dotnet-version: ${{inputs.dotnet_version}}
     - name: Change directory
       run: cd ${{inputs.path}}
+    - name: Change directory
+      run: ls
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
