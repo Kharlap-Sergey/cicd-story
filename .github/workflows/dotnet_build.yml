@@ -18,16 +18,16 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ${{inputs.path}}
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{inputs.dotnet_version}}
-    - name: Change directory
-      run: cd ${{inputs.path}}
-    - name: Change directory
+    - name: Directory content
       run: ls
     - name: Restore dependencies
       run: dotnet restore
