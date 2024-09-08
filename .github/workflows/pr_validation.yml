@@ -8,11 +8,11 @@ env:
   
 jobs:
   dotnet_build_and_test:
-    uses: .github/workflows/dotnet_build.yml@main
+    uses: ./.github/workflows/dotnet_build.yml
     with: 
       dotnet_version: 8.0.x
   docker_build:
-    uses: .github/workflows/docker_build.yml@main
+    uses: ./.github/workflows/docker_build.yml
     with:
       file: ./simple-service/src/Api/Dockerfile
       context: ./simple-service
