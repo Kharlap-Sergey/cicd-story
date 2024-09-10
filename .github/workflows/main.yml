@@ -1,0 +1,24 @@
+on:
+  pull_request:
+    branches: [ "main" ]
+    
+env:
+  RELEASE_BRANCH: 'refs/heads/main'
+  PUSH_AS_LATEST: true
+  
+jobs:
+  dotnet_build_and_test:
+    uses: ./.github/workflows/dotnet_build.yml
+    with: 
+      dotnet_version: 8.0.x
+      path: ./simple-service
+  docker_build:
+    permissions:
+      packages: write
+      contents: read
+    uses: ./.github/workflows/docker_build.yml
+    with:
+      file: ./simple-service/src/Api/Dockerfile
+      context: ./simple-service
+      push:  true
+      application: "cicd-sotry"
