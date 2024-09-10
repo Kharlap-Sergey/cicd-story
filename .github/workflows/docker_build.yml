@@ -34,13 +34,10 @@ on:
 
 jobs:
   push_to_registry:
-    name: Docker Build&[Push] 
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
-      attestations: write
-      id-token: write
     outputs:
       meta_tags: ${{steps.meta.outputs.tags}}
       meta_version: ${{steps.meta.outputs.version}}

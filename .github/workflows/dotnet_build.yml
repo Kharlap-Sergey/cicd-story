@@ -6,6 +6,10 @@ on:
       dotnet_version:
         required: true
         type: string
+      path:
+        required: false
+        default: ./
+        type: string
       run_tests:
         required: false
         default: true
@@ -14,13 +18,17 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ${{inputs.path}}
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{inputs.dotnet_version}}
+    - name: Directory content
+      run: ls
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
